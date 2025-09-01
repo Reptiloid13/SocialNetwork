@@ -1,4 +1,4 @@
-﻿using SocialNetwork.BusinessLogicLayer.Exception;
+﻿using SocialNetwork.BusinessLogicLayer;
 using SocialNetwork.BusinessLogicLayer.Models;
 using SocialNetwork.DataAccessLayer.Entities;
 using SocialNetwork.DataAccessLayer.Repositories;

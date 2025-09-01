@@ -44,5 +44,5 @@ public interface IUserRepository
     IEnumerable<UserEntity> FindAll();
     UserEntity FindById(int id);
     int Update(UserEntity userEntity);
-    int Delete(int id);
+    int DeleteById(int id);
 }

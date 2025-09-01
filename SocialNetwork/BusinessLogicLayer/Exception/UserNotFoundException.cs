@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SocialNetwork.BusinessLogicLayer.Exception;
+namespace SocialNetwork.BusinessLogicLayer;
 
 public class UserNotFoundException : Exception
 {

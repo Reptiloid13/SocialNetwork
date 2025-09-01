@@ -18,13 +18,13 @@ public class User
     public string FavoriteBook { get; set; }
     public User(int id, string firstName, string lastName, string password, string email, string photo, string favoriteMovie, string favoriteBook)
     {
-        Id = id;
-        FirstName = firstName;
-        LastName = lastName;
-        Password = password;
-        Email = email;
-        Photo = photo;
-        FavoriteMovie = favoriteMovie;
-        FavoriteBook = favoriteBook;
+        this.Id = id;
+        this.FirstName = firstName;
+        this.LastName = lastName;
+        this.Password = password;
+        this.Email = email;
+        this.Photo = photo;
+        this.FavoriteMovie = favoriteMovie;
+        this.FavoriteBook = favoriteBook;
     }
 }

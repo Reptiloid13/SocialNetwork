@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SocialNetwork.PresentationLogicLayer.Helpers;
 
-public class AlertMessages
+public class AlertMessage
 {
     public static void Show(string message)
     {
