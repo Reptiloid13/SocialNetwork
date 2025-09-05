@@ -8,7 +8,7 @@ namespace SocialNetwork.DataAccessLayer.Entities;
 
 public class UserEntity
 {
-    public int Id { get; set; }
+    public int id { get; set; }
     public string firstName { get; set; }
     public string lastName { get; set; }
     public string password { get; set; }

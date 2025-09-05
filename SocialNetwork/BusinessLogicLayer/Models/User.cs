@@ -16,7 +16,11 @@ public class User
     public string Photo { get; set; }
     public string FavoriteMovie { get; set; }
     public string FavoriteBook { get; set; }
-    public User(int id, string firstName, string lastName, string password, string email, string photo, string favoriteMovie, string favoriteBook)
+    public IEnumerable<Message> IncomingMessages { get; }
+    public IEnumerable<Message>OutgoingMessages { get; }
+    public IEnumerable<User> Friends { get; }
+    
+    public User(int id, string firstName, string lastName, string password, string email, string photo, string favoriteMovie, string favoriteBook, IEnumerable<Message> incomingMessages, IEnumerable<Message> outComingMessages, IEnumerable<User>friends)
     {
         this.Id = id;
         this.FirstName = firstName;
@@ -26,5 +30,8 @@ public class User
         this.Photo = photo;
         this.FavoriteMovie = favoriteMovie;
         this.FavoriteBook = favoriteBook;
+        this.IncomingMessages = incomingMessages;
+        this.OutgoingMessages = outComingMessages;
+        this.Friends = friends;
     }
 }

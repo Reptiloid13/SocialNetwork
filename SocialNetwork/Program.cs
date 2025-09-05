@@ -30,7 +30,20 @@ public class Program
         mainView = new MainView();
         registrationView = new RegistrationView(userService);
         authenticationView = new AuthenticationView(userService);
-        //TODO Дописать
+        userMenuView = new UserMenuView(userService);
+        userInfoView = new UserInfoView();
+        userDataUpdateView = new UserDataUpdateView(userService);
+        messageSendinView = new MessageSendingView(messageService, userService);
+        userIncomingMessageView = new UserIncomingMessageView();
+        userOutcommingMessageView = new UserOutcommingMessageView();
+        addingFriendView = new AddingFriendView(userService);
+        userFriendView = new UserFriendView();
+
+        while (true)
+        {
+            mainView.Show();
+        }
+
 
         
 

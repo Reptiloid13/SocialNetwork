@@ -11,7 +11,8 @@ public class UserMenuView
 {
     UserService userService;
 
-    public UserMenuView(UserService userService) { this.userService = userService; }
+    public UserMenuView(UserService userService) 
+    { this.userService = userService; }
     public void Show(User user)
     {
         while (true)
@@ -52,7 +53,7 @@ public class UserMenuView
                     }
                 case "4":
                     {
-                        Program.messageSendingView.Show(user);
+                        Program.messageSendinView.Show(user);
                         user = userService.FindById(user.Id);
                         break;
                     }
@@ -63,7 +64,7 @@ public class UserMenuView
                     }
                 case "6":
                     {
-                        Program.userIncomingMessage.View.Show(user.IncomingMessages);
+                        Program.userIncomingMessageView.Show(user.OutgoingMessages);
                         break;
                     }
                 case "7":

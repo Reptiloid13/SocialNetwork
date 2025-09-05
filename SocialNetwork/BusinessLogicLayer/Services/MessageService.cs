@@ -25,7 +25,8 @@ public class MessageService
         {
             var senderUserEntiity = userRepository.FindById(m.sender_id);
             var recipientUserEntity = userRepository.FindById(m.recipient_id);
-            messages.Add(new Message(m.id, m.content, senderUserEntiity.email, recipientUserEntity.email});
+            messages.Add(new Message(m.id, m.content, senderUserEntiity.email, recipientUserEntity.email));
+                });
         return messages;
 
     }
@@ -56,7 +57,7 @@ public class MessageService
         {
             content = messageSendingData.Content,
             sender_id = messageSendingData.SenderId,
-            recipient_id = findUserEntity.Id
+            recipient_id = findUserEntity.id
         };
         if (this.messageRepository.Create(messageEntity) == 0)
             throw new Exception();

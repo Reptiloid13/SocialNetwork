@@ -22,4 +22,4 @@ public class UserInfoView
         Console.WriteLine("Моя любимая книга: {0}", user.FavoriteBook);
     }
 }
-}
+

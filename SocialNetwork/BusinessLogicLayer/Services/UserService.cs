@@ -14,10 +14,14 @@ namespace SocialNetwork.BusinessLogicLayer.Services;
 
 public class UserService
 {
+    MessageService messageService;
     IUserRepository userRepository;
+    IFriendRepository friendRepository;
     public UserService()
     {
         userRepository = new UserRepository();
+        friendRepository = new FriendRepository();
+        messageService = new MessageService();
     }
     public void Register(UserRegistrationData userRegistrationData)
     {
@@ -61,9 +65,15 @@ public class UserService
             throw new WrongPasswordException();
         return ConstructUserModel(findUserEntity);
     }
-    public User FindEmail(string email)
+    public User FindByEmail(string email)
     {
         var findUserEntity = userRepository.FindByEmail(email);
+        if (findUserEntity is null) throw new UserNotFoundException();
+        return ConstructUserModel(findUserEntity);
+    }
+    public User FindById(int id)
+    {
+        var findUserEntity = userRepository.FindById(id);
         if (findUserEntity is null) throw new UserNotFoundException();
         return ConstructUserModel(findUserEntity);
     }
@@ -71,7 +81,7 @@ public class UserService
     {
         var updatableUserEntity = new UserEntity()
         {
-            Id = user.Id,
+            id = user.Id,
             firstName = user.FirstName,
             lastName = user.LastName,
             password = user.Password,
@@ -83,15 +93,41 @@ public class UserService
         if (this.userRepository.Update(updatableUserEntity) == 0)
             throw new Exception();
     }
+    public IEnumerable<User>GetFriendByUserId(int userId)
+    {
+        return friendRepository.FindAllByUserId(userId)
+            .Select(friendsEntity => FindById(friendsEntity.friend_id));
+    }
+    public void AddFriend(UserAddingFriendData userAddingFriendData)
+    {
+        var findUserEntity = userRepository.FindByEmail(userAddingFriendData.FriendEmail);
+        if (findUserEntity is null) throw new UserNotFoundException();
+
+        var friendEntity = new FriendEntity()
+        {
+            user_id = userAddingFriendData.UserId,
+            friend_id = findUserEntity.id
+        };
+        if (this.friendRepository.Create(friendEntity) == 0)
+            throw new Exception();
+
+    }
     private User ConstructUserModel(UserEntity userEntity)
     {
-        return new User(userEntity.Id,
+        var incomingMessages = messageService.GetIncomingMessagesByUserId(userEntity.id);
+        var outgoingMessages = messageService.GetOutComingMessageByUserId(userEntity.id);
+        var friends = GetFriendByUserId(userEntity.id);
+
+        return new User(userEntity.id,
             userEntity.firstName,
             userEntity.lastName,
             userEntity.password,
             userEntity.email,
             userEntity.photo,
             userEntity.favorite_movie,
-            userEntity.favorite_book);
+            userEntity.favorite_book,
+           incomingMessages,
+           outgoingMessages,
+           friends);
     }
 }

@@ -38,6 +38,6 @@ public class BaseRepository
     }
     private IDbConnection CreateConnection()
     {
-        return new SQLiteConnection("Data Source = DAL/DB/social_network.db; Version =3");
+        return new SQLiteConnection("Data Source = DataAccessLayer/DB/social_network_bd.db; Version =3");
     }
 }

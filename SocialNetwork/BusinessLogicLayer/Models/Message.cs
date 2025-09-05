@@ -8,7 +8,7 @@ namespace SocialNetwork.BusinessLogicLayer.Models;
 
 public class Message
 {
-    public int Id { get; set; } 
+    public int Id { get; } 
     public string Content { get; }
     public string SenderEmail { get; }
     public string RecipientEmail {  get; }
